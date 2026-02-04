@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ReduxProvider } from "@/store/reduxProvider";
+import Link from "next/link";
+import Image from "next/image";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +30,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ReduxProvider>
+          <main className="min-h-screen mx-auto max-w-200 border-4 border-red-600">
+            <div className="top-0 w-full max-w-200 flex items-center justify-between py-6 px-8 mx-auto bg-red-600">
+              <Link href={'/'} className="flex gap-2 mx-auto">
+                <Image src={'/images/pokeball.svg'} alt="pokeball" width={20} height={20} />
+                <h1 className="text-xl text-white">Pokedéx</h1>
+              </Link>
+            </div>
+            {children}
+          </main>
+        </ReduxProvider>
       </body>
     </html>
   );
