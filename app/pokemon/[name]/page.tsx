@@ -44,7 +44,7 @@ export default function PokemonDetail() {
     return "bg-red-500";
   };
 
-  if (loading) {
+  if (loading || (!pokemon && !error)) {
     return (
       <div className="min-h-screen bg-linear-to-br from-dark-bg via-darker-bg to-dark-bg">
         <div className="container mx-auto px-4 py-12">
@@ -62,7 +62,7 @@ export default function PokemonDetail() {
           <div className="text-center mt-2">
             <button
               onClick={() => router.push("/")}
-              className="px-6 py-3 bg-blue-500 font-display text-xs rounded-lg hover:bg-blue-500/80 transition-colors"
+              className="px-6 py-3 font-display text-xs rounded-lg transition-colors"
             >
               ◄ BACK TO LIST
             </button>

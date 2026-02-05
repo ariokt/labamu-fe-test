@@ -48,6 +48,11 @@ export default function PokemonList() {
   };
 
   const displayedData = searchQuery ? filteredPokemon : pokemonList;
+  const showSearchNoResults =
+    searchQuery &&
+    !loading &&
+    filteredPokemon.length === 0 &&
+    pokemonList.length > 0;
 
   return (
     <>
@@ -60,6 +65,31 @@ export default function PokemonList() {
         {displayedData.map((pokemon) => (
           <PokemonCard key={pokemon.name} pokemon={pokemon} />
         ))}
+        {showSearchNoResults && (
+          <div className="col-span-2 md:col-span-4 text-center py-8 mt-8">
+            <div className="max-w-md mx-auto">
+              <svg
+                className="w-16 h-16 text-gray-400 mx-auto mb-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+              <h3 className="text-xl font-semibold text-gray-700 mb-2">
+                No Pokémon found
+              </h3>
+              <p className="text-gray-500">
+                No results match. Try a different search term.
+              </p>
+            </div>
+          </div>
+        )}
       </div>
       {loading && (
         <div className="mx-auto text-xl w-fit my-4">

@@ -40,6 +40,7 @@ const pokemonDetailSlice = createSlice({
     builder
       .addCase(fetchPokemonDetail.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(fetchPokemonDetail.fulfilled, (state, action) => {
         state.loading = false;
