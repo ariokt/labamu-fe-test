@@ -1,5 +1,6 @@
 # 🚀 Project Name
 
+```text
 Pokedex using https://pokeapi.co/
 Live Demo: https://labamu-fe-test.vercel.app
 Repository: https://github.com/ariokt/labamu-fe-test
@@ -19,6 +20,7 @@ Repository: https://github.com/ariokt/labamu-fe-test
 
 ## 📁 Folder Structure
 
+```text
 api/                 # All functions to hit API
 app/                 # App Router pages & layouts
 component/           # Reuseable component
