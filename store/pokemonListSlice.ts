@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { PokemonListData, PokemonListResponse } from "./types";
+import { PokemonListData } from "./types";
 import { getPokemonList } from "@/api/api";
 
 interface PokemonState {
@@ -26,7 +26,6 @@ export const fetchPokemonList = createAsyncThunk(
   'pokemon/fetchList',
   async (url: string, { rejectWithValue }) => {
     try {
-      // const state = getState() as PokemonState;
       if (url !== '') {
         return await getPokemonList(url);
       } else {
@@ -55,6 +54,13 @@ const pokemonListSlice = createSlice({
         );
       }
     },
+    resetPokemonList: (state) => {
+      state.pokemonList = [];
+      state.filteredPokemon = [];
+      state.next = '';
+      state.prev = '';
+      state.error = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -78,6 +84,7 @@ const pokemonListSlice = createSlice({
 
 export const {
   setSearchQuery,
+  resetPokemonList,
 } = pokemonListSlice.actions;
 
 export default pokemonListSlice.reducer;

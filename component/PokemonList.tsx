@@ -1,37 +1,47 @@
 "use client";
 
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { fetchPokemonList, setSearchQuery } from "@/store/pokemonListSlice";
+import {
+  fetchPokemonList,
+  setSearchQuery,
+  resetPokemonList,
+} from "@/store/pokemonListSlice";
 import { RootState } from "@/store/store";
-import { useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import PokemonCard from "./PokemonCard";
 import Spinner from "./Spinner";
 import SearchBar from "./SearchBar";
 
 export default function PokemonList() {
   const dispatch = useAppDispatch();
-  const { pokemonList, loading, next, searchQuery, filteredPokemon } = useAppSelector(
-    (state: RootState) => state.pokemonList
-  );
+  const { pokemonList, loading, next, searchQuery, filteredPokemon } =
+    useAppSelector((state: RootState) => state.pokemonList);
+
+  const isInitialLoad = useRef(false);
 
   useEffect(() => {
-    dispatch(fetchPokemonList(next));
-  }, []);
+    if (isInitialLoad.current) return;
 
-  const handleScroll = () => {
+    isInitialLoad.current = true;
+    dispatch(resetPokemonList());
+    dispatch(fetchPokemonList(""));
+  }, [dispatch]);
+
+  const handleScroll = useCallback(() => {
     if (
       window.innerHeight + document.documentElement.scrollTop >=
         document.documentElement.offsetHeight - 10 &&
-      !loading
+      !loading &&
+      next
     ) {
       dispatch(fetchPokemonList(next));
     }
-  };
+  }, [dispatch, loading, next]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [loading, pokemonList]);
+  }, [handleScroll]);
 
   const handleSearchChange = (query: string) => {
     dispatch(setSearchQuery(query));

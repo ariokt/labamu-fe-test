@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 interface PokemonCardProps {
@@ -12,7 +13,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
   const id = pokemon.url.split('/').filter(Boolean).at(-1);
 
   return (
-    <div className="flex flex-col items-center shadow rounded-xl p-2 bg-[#E1F9EA]">
+    <Link href={`/pokemon/${pokemon.name}`} className="flex flex-col items-center shadow rounded-xl p-2 bg-[#E1F9EA]">
       <div className="bg-white rounded-2xl mb-2">
         <Image
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
@@ -25,7 +26,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
       <p className="text-md">
         {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
       </p>
-    </div>
+    </Link>
   );
 };
 
