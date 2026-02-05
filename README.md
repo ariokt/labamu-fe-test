@@ -10,12 +10,12 @@ Repository: https://github.com/ariokt/labamu-fe-test
 ## 🛠 Tech Stack
 
 ```text
-- **Framework**: Next.js 14 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **State Management**: Redux Toolkit
-- **API**: REST API, Axios
-- **Deployment**: Vercel
+- Framework: Next.js 14 (App Router)
+- Language: TypeScript
+- Styling: Tailwind CSS
+- State Management: Redux Toolkit
+- API: REST API, Axios
+- Deployment: Vercel
 
 ---
 
