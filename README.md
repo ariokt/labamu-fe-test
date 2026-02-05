@@ -9,6 +9,7 @@ Repository: https://github.com/ariokt/labamu-fe-test
 
 ## 🛠 Tech Stack
 
+```text
 - **Framework**: Next.js 14 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
